@@ -4,12 +4,15 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  padding-top: var(--ticker-height); git/* espacio para el ticker */
+
   font-family: "Roboto";
 }
 
 :root {
   --font-sans: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   --font-serif: "Roboto Slab", Georgia, "Times New Roman", serif;
+  --ticker-height: 40px;
 }
 
 /* Títulos */
@@ -32,15 +35,49 @@ a {
 
 /* --------- HEADER ------------- */
 
-/* cajita flotante */
+/* cajita flotante: en móvil se integra con el ticker */
 .header {
-  background-color: #6c933e;
-  position: fixed; /* se posiciona y fija respecto al body */
-  width: 36px;
-  height: 36px;
+  position: fixed;
+  top: 0; /* alineada al mismo nivel que el ticker */
+  left: 0;
+  width: var(--ticker-height); /* ocupa la altura del ticker (cuadrado) */
+  height: var(--ticker-height);
   display: flex;
-  align-items: center; /* centrado del menú */
+  align-items: center;
   justify-content: center;
+  background: #6c933e; 
+  z-index: 1002; /* encima del ticker para que el icono sea clicable */
+  border-left: 1px solid rgba(0,0,0,0.06); /* separación sutil */
+}
+
+/* Top ticker */
+.top-ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--ticker-height);
+  background: #6c933e;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1001; /* debajo del icono (header) */
+  padding-right: calc(var(--ticker-height) + 8px); /* reserva espacio para la hamburguesa */
+}
+
+.top-ticker .ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: ticker 30s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* enlace */
@@ -54,8 +91,8 @@ a {
 
 /* icono hamburguesa */
 .hamburguer-menu-icon {
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
   display: block;
 }
 
@@ -142,7 +179,7 @@ a {
 
 /* Aseguramos que la cajita del header quede por encima del logo */
 .header {
-  z-index: 999; /* asegurar que la cajita quede siempre por encima de otros elementos */
+  z-index: 1002; /* asegurar que la cajita quede siempre por encima de otros elementos */
 }
 
 .hero h1 {
