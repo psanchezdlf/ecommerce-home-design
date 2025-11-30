@@ -7,27 +7,33 @@ body {
   font-family: "Roboto";
 }
 
-:root{
+:root {
   --font-sans: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   --font-serif: "Roboto Slab", Georgia, "Times New Roman", serif;
 }
 
 /* Títulos */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: "Roboto Slab";
   font-weight: bold;
   text-transform: uppercase;
 }
 
 /* Texto general */
-p, span, li, a {
+p,
+span,
+li,
+a {
   font-family: "Roboto";
 }
 
 /* --------- HEADER ------------- */
 
 /* cajita flotante */
-.header{
+.header {
   background-color: #6c933e;
   position: fixed; /* se posiciona y fija respecto al body */
   width: 36px;
@@ -39,11 +45,11 @@ p, span, li, a {
 
 /* enlace */
 .hamburguer-menu {
- width: 100%; /* el enlace ocupa toda la cajita, mejora el click */
- height: 100%;
- display: flex;
- justify-content: center; /* centrado del icono */
- align-items: center;
+  width: 100%; /* el enlace ocupa toda la cajita, mejora el click */
+  height: 100%;
+  display: flex;
+  justify-content: center; /* centrado del icono */
+  align-items: center;
 }
 
 /* icono hamburguesa */
@@ -52,7 +58,6 @@ p, span, li, a {
   height: 12px;
   display: block;
 }
- 
 
 /* ---------- HERO --------------- */
 
@@ -61,21 +66,89 @@ p, span, li, a {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 552px;
+  position: relative; /* necesario para posicionar elementos absolutos dentro del hero */
+  min-height: 100vh;
   width: 100%;
-  background:url(./images/cover.jpeg) right / cover no-repeat;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url(./images/cover.jpg);
+  background-position: center top; /* mobile-first: mostrar la parte superior de la imagen primero */
+  background-repeat: no-repeat;
   background-size: cover;
-  color: white;                 
+  overflow: hidden; /* evitar que elementos posicionados absolutamente (logo) provoquen scroll o reflow */
+  color: white;
 }
 
 .hero-text {
-  padding: 297px 40px 40px; 
+  padding: 20px 20px 36px;
   text-align: center;
   margin: 0 auto;
+  margin-top: auto; /* empuja el bloque hacia la parte inferior del hero */
+  position: relative;
+  z-index: 1;
+}
+
+/* Menú desplegado dentro del hero (oculto en móvil, visible en desktop) */
+.hero-nav {
+  display: none; /* por defecto no mostrar en móvil */
+}
+
+.hero-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.hero-nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 6px 10px;
+  transition: color 0.12s ease, transform 0.12s ease;
+}
+
+.hero-nav a:hover {
+  color: #6c933e;
+  transform: translateY(-2px);
+}
+
+/* Carrito en el menú */
+.hero-nav .nav-cart a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+}
+
+.hero-nav .nav-cart i {
+  font-size: 18px;
+  color: white;
+}
+
+/* Logo */
+.sport-logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: clamp(60px, 18vw, 160px); /* responsive, never too big */
+  max-width: 180px;
+  height: auto;
+  z-index: 5; /* por encima del fondo, por debajo del header */
+  display: block;
+}
+
+/* Aseguramos que la cajita del header quede por encima del logo */
+.header {
+  z-index: 999; /* asegurar que la cajita quede siempre por encima de otros elementos */
 }
 
 .hero h1 {
-  font-size: 55px;
+  font-size: 50px;
+  line-height: 1.02;
+  margin: 0 0 6px; /* reduce espacio entre título y párrafo */
 }
 
 .hero p {
@@ -85,12 +158,12 @@ p, span, li, a {
 
 /* Enlace con aspecto de botón circular y flecha */
 .hero-button {
-margin: 0;
-padding-bottom: 57px;
+  margin: 0;
+  padding-bottom: 57px;
 }
 
 .down-arrow {
-  width: 40px;                        /* tamaño del botón */
+  width: 40px; /* tamaño del botón */
   height: 40px;
   border-radius: 50%;
   background: white;
@@ -102,7 +175,7 @@ padding-bottom: 57px;
 
 .features {
   padding: 34px 17px 30px 13px;
-  display:flex;
+  display: flex;
   justify-items: flex-start;
   align-items: flex-start;
   flex-direction: column;
@@ -121,21 +194,21 @@ padding-bottom: 57px;
 .features p {
   font-size: 20px;
   color: #666;
-  margin: 0;  /* quita márgenes por defecto */
+  margin: 0; /* quita márgenes por defecto */
   padding-bottom: 42px;
 }
 
 /* botón de comprar */
 .features-button {
   text-decoration: none;
-  color:#6c933e;
+  color: #6c933e;
   font-size: 20px;
   font-weight: bold;
-  display: inline-block;                 
+  display: inline-block;
   padding: 12px 40px;
-  border: 3px solid #6c933e;             
+  border: 3px solid #6c933e;
   color: #6c933e;
-  border-radius: 99px;               
+  border-radius: 99px;
 }
 
 .features-button:hover {
@@ -146,7 +219,7 @@ padding-bottom: 57px;
 
 /* Contenedor principal: todo centrado horizontalmente */
 .products {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #d9e4cc;
@@ -160,13 +233,13 @@ padding-bottom: 57px;
 }
 
 .products h3 {
-  margin:0;
+  margin: 0;
   padding-bottom: 15px;
 }
 
-.products span{
-    color: #666;
-    font-weight: bold;
+.products span {
+  color: #666;
+  font-weight: bold;
 }
 
 /* sección hija de lista de productos */
@@ -187,18 +260,18 @@ padding-bottom: 57px;
 
 /* caja redonda para las imágenes */
 .product-img {
-  width: 120px;                 
-  height: 120px;                
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0,0,0,.12);
-  object-fit: contain;          /* encaja sin deformar */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  object-fit: contain; /* encaja sin deformar */
   display: block;
 }
 
 /* nombre del producto */
-.product h4 { 
+.product h4 {
   margin: 10px;
-  text-align: center; 
+  text-align: center;
   font-weight: 600;
   text-transform: none;
 }
@@ -207,15 +280,15 @@ padding-bottom: 57px;
 .products-button {
   align-self: center;
   text-decoration: none;
-  background-color:#6c933e;
-  color:white;
+  background-color: #6c933e;
+  color: white;
   font-size: 20px;
   font-weight: bold;
-  display: inline-block;                 
+  display: inline-block;
   padding: 12px 20px;
-  border: 2px solid #6c933e;             
+  border: 2px solid #6c933e;
   border-radius: 99px;
-  margin-top: 16px;       
+  margin-top: 16px;
 }
 
 .products-button:hover {
@@ -225,33 +298,32 @@ padding-bottom: 57px;
 /* ---------- FOOTER ------------- */
 
 .footer {
-  position:relative; /* El footer será el contenedor de referencia para la flecha */
+  position: relative; /* El footer será el contenedor de referencia para la flecha */
   background-color: #4a4a4a;
-  color:white;
+  color: white;
   text-align: center;
   padding-top: 48px; /* deja hueco para la flecha */
 }
 
 /* Enlace con aspecto de botón circular y flecha */
-.up-arrow{
+.up-arrow {
   position: absolute;
   left: 50%;
-  top: 0;                             /* límite superior del footer */
-  transform: translate(-50%, -50%);   /* sube media altura */
+  top: 0; /* límite superior del footer */
+  transform: translate(-50%, -50%); /* sube media altura */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 45px;                        /* tamaño del botón */
+  width: 45px; /* tamaño del botón */
   height: 45px;
   border-radius: 50%;
-  background:white;
-  transition: transform .15s ease, box-shadow .15s ease; /* pequeño efecto de transición */
+  background: white;
+  transition: transform 0.15s ease, box-shadow 0.15s ease; /* pequeño efecto de transición */
 }
 
 .up-arrow:hover {
   transform: translate(-50%, -50%) scale(1.05);
 }
-
 
 /* Tamaño del icono */
 .up-arrow img {
@@ -261,71 +333,90 @@ padding-bottom: 57px;
 }
 
 .footer-content {
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr;
-  gap:20px;
+  gap: 20px;
   justify-items: center;
   align-items: center;
   padding-bottom: 30px;
 }
 
-.footer-menu, .social-media, .copyright {
+.footer-menu,
+.social-media,
+.copyright {
   list-style: none;
   margin: 0;
-  padding: 0; 
+  padding: 0;
 }
 
-.footer-menu, .social-media {
+.footer-menu,
+.social-media {
   text-transform: uppercase;
 }
 
-.footer a { 
-    color:#fff ; 
-    text-decoration:none ; 
-  }
+.footer a {
+  color: #fff;
+  text-decoration: none;
+}
 
 .footer a:hover {
-  color:#6c933e; /* resaltado de enlaces */
+  color: #6c933e; /* resaltado de enlaces */
 }
 
 .footer li {
-margin-bottom: 10px;  /* separación entre elementos lista */
+  margin-bottom: 10px; /* separación entre elementos lista */
 }
 
 /* mini iconito del copyright */
 .heart-icon {
-  color:#6c933e; 
+  color: #6c933e;
 }
-
 
 /*  ---------- BREAKPOINTS ----------- */
 
 /* Tablet */
 @media (min-width: 768px) {
 
-  /* HERO */
-  
-  .hero h1 { 
-    font-size: 75px;   /* fuente de h1 más grande a partir de tablet */
-    margin: 0; /* texto más pegado a partir de tablet*/
+  /* HEADER */
+
+  .sport-logo {
+    top: 20px;
+    right: 48px;
+    width: 120px;
   }
-  
-   .hero p {
-    font-size:24px; /* fuente de p más grande a partir de tablet */
+
+  /* HERO */
+
+  .hero h1 {
+    font-size: 75px; /* fuente de h1 más grande a partir de tablet */
+    margin: 0 0 8px; /* mantiene pequeño espacio abajo en tablet */
+  }
+
+  .hero p {
+    font-size: 24px; /* fuente de p más grande a partir de tablet */
     margin: 0; /* texto más pegado */
-    padding: 0px 200px 0px 200px;   /* amplia aire a los lados*/
+    padding: 0px 200px 0px 200px; /* amplia aire a los lados*/
+  }
+
+  /* devolver padding del hero-text a valores de tablet/desktop */
+  .hero {
+    background-position: center; /* en pantallas mayores centrar la imagen */
+  }
+
+  .hero-text {
+    padding: 40px 40px 60px;
   }
 
   /* FEATURES */
-  
+
   /* más aire a los lados y por debajo en features tablet */
   .features {
-  padding: 34px 38px 50px 38px;
+    padding: 34px 38px 50px 38px;
   }
 
   .features h2 {
     font-size: 32px; /* fuente más grande a partir de tablet */
-  } 
+  }
 
   /* PRODUCTS */
 
@@ -336,51 +427,78 @@ margin-bottom: 10px;  /* separación entre elementos lista */
   /* card de cada producto */
   .product-list {
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 32px;   /* separa horizontalmente las cards */
+    column-gap: 32px; /* separa horizontalmente las cards */
   }
 
   /* FOOTER */
-  
+
   .footer-content {
     grid-template-columns: 1fr 1fr 1fr; /* 3 columnnas a partir de tablet */
     text-align: left;
-    align-items: stretch; /* para que estén a la misma altura */  
+    align-items: stretch; /* para que estén a la misma altura */
   }
 
   /* Orden de columnas cambia a partir de tablet */
-  .copyright    { order: 1; }
-  .footer-menu  { order: 2; }
-  .social-media { order: 3; }
+  .copyright {
+    order: 1;
+  }
+  .footer-menu {
+    order: 2;
+  }
+  .social-media {
+    order: 3;
+  }
 }
 
 /* Escritorio */
-@media (min-width: 1024px ) {
-
+@media (min-width: 1024px) {
   /* HERO */
 
-  .hero h1 { 
-    max-width: 15ch;      /* 15 caracteres por línea ≈ 2 líneas */
+  /* Logo más grande */
+  .sport-logo {
+    width: 200px;
+    height: auto;
+  }
+
+  /* mostrar el menú dentro del hero y ocultar el menú hamburguesa fijo */
+  .hero-nav {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    z-index: 25;
+  }
+
+  /* ocultar la cajita hamburguesa en desktop */
+  .header {
+    display: none;
+  }
+
+  .hero-nav .nav-cart i {
+    font-size: 20px;
+  }
+
+  .hero h1 {
+    max-width: 15ch; /* 15 caracteres por línea ≈ 2 líneas */
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto 8px;
   }
 
   .hero p {
-    font-size:28px; 
+    font-size: 28px;
   }
 
   /* FEATURES */
 
   /* aún más aire a los lados en features desktop para equilibrar */
   .features {
-  padding: 34px 170px 50px 170px;
+    padding: 34px 170px 50px 170px;
   }
 
   /* PRODUCTS */
 
   /* card de cada producto */
   .product-list {
-    column-gap: 200px;   /* separa aún más las cards en escritorio */
+    column-gap: 200px; /* separa aún más las cards en escritorio */
   }
 }
-
-/* holis Ivan, he revisado todo y mejoraría cosas pero llevo dos días soñando con código y grids, help! */

@@ -12,6 +12,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <title>AdaSport | Tu tienda de deporte</title>
   </head>
   <body>
@@ -30,13 +34,31 @@
     <main>
       <!--HERO-->
       <section id="hero-section" class="hero">
+        <img
+          class="sport-logo"
+          src="./images/sport-logo.png"
+          alt="AdaSport logo"
+        />
+        <!-- Menú desplegado en desktop -->
+        <nav class="hero-nav" aria-label="Menú principal">
+          <ul>
+            <li><a href="#products-section">Zapatillas</a></li>
+            <li><a href="#products-section">Ropa</a></li>
+            <li><a href="#products-section">Niño/a</a></li>
+            <li class="nav-cart">
+              <a href="#cart" aria-label="Carrito de la compra"
+                ><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i
+              ></a>
+            </li>
+          </ul>
+        </nav>
         <div class="hero-text">
           <h1>Comienzos compartidos</h1>
           <p>Todo lo que necesitan para volver al cole con ilusión.</p>
         </div>
         <!--flecha de navegación-->
         <div class="hero-button">
-          <a href="#products-section" class="down-arrow">
+          <a href="#products-section" class="down-arrow" title="Ir abajo">
             <img src="./images/ico-scroll-down.svg" />
           </a>
         </div>
