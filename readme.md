@@ -4,7 +4,7 @@
 
 Este proyecto consiste en **maquetar una página web responsive** a partir de un diseño proporcionado.
 
-![Desktop design](assets/Desktop.png)
+![Desktop design](images/assets/Desktop.png)
 
 El objetivo principal es reproducir la composición y el estilo indicados, poniendo en práctica Flexbox, CSS Grid y media queries.
 Además, se recomienda implementar pequeñas interacciones como transiciones y animaciones.
