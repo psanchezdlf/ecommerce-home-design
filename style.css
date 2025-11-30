@@ -374,9 +374,41 @@ a {
 
 /*  ---------- BREAKPOINTS ----------- */
 
+/* Media queries para móviles muy pequeñitos (mobile-first) */
+@media (max-width: 420px) {
+  /* reducir tipografías/espaciados */
+  .hero {
+    background-position: center top;
+  }
+  .hero-text {
+    padding: 12px 12px 28px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    line-height: 1.05;
+  }
+  .hero p {
+    font-size: 13px;
+  }
+  .sport-logo {
+    width: clamp(40px, 14vw, 80px);
+    top: 6px;
+    right: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+  .hero-text {
+    padding-bottom: 22px;
+  }
+}
+
 /* Tablet */
 @media (min-width: 768px) {
-
+  
   /* HEADER */
 
   .sport-logo {
