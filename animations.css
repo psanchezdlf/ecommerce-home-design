@@ -1,0 +1,270 @@
+/* =========================================================
+   CSS Animations Glossary
+   Archivo: animations.css
+   Descripción: Colección de animaciones reutilizables
+   ========================================================= */
+
+
+/* =========================================================
+   1. ORBIT
+   Un elemento gira en círculo alrededor de un punto.
+   Uso:
+     <div class="orbit-container">
+       <div class="orbit-item"></div>
+     </div>
+   ========================================================= */
+
+.orbit-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: visible;
+  /* Opcional: guía visual
+  border: 1px dashed #ddd;
+  */
+}
+
+.orbit-item {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: tomato;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+
+  /* Distancia desde el centro (radio de la órbita) */
+  transform: translate(60px, -50%);
+  transform-origin: -60px 50%;
+
+  animation: orbit 4s linear infinite;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translate(60px, -50%);
+  }
+  to {
+    transform: rotate(360deg) translate(60px, -50%);
+  }
+}
+
+
+/* =========================================================
+   2. TICKER LINE
+   Texto desplazándose horizontalmente (ticker de noticias).
+   Uso:
+     <div class="ticker">
+       <div class="ticker__inner">
+         Texto que se repite — Texto que se repite —
+       </div>
+     </div>
+   ========================================================= */
+
+.ticker {
+  width: 100%;
+  overflow: hidden;
+  background: #111;
+  color: #fff;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+.ticker__inner {
+  white-space: nowrap;
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker-move 15s linear infinite;
+}
+
+@keyframes ticker-move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+/* =========================================================
+   3. TYPEWRITER
+   Efecto máquina de escribir + cursor parpadeante.
+   Uso:
+     <h2 class="typewriter">
+       <span class="typewriter__text">
+         Hola, este es un efecto máquina de escribir.
+       </span>
+     </h2>
+   Nota:
+     Ajusta la duración y steps() según la longitud del texto.
+   ========================================================= */
+
+.typewriter {
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #333; /* cursor */
+  display: inline-block;
+}
+
+.typewriter__text {
+  display: inline-block;
+  /* 4s de escritura, 40 pasos (ajustar el número de caracteres) */
+  animation:
+    typing 4s steps(40, end) forwards,
+    blink-caret 0.7s step-end infinite;
+}
+
+/* Animación de escritura */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Parpadeo del cursor */
+@keyframes blink-caret {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #333;
+  }
+}
+
+
+/* =========================================================
+   4. POP BUTTON
+   Botón con efecto "pop" al hacer hover.
+   Uso:
+     <button class="btn-pop">Comprar ahora</button>
+   ========================================================= */
+
+.btn-pop {
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  transform: scale(1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    background 0.15s ease-out;
+}
+
+.btn-pop:hover {
+  transform: scale(1.05);
+  background: #6366f1;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.btn-pop:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   5. IMAGE POP
+   Zoom suave y pequeño oscurecido al hacer hover sobre una imagen.
+   Uso:
+     <div class="img-pop">
+       <img src="..." alt="">
+     </div>
+   ========================================================= */
+
+.img-pop {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.img-pop img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  transform: scale(1);
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+.img-pop:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.85);
+}
+
+
+/* =========================================================
+   6. FADE-IN UP
+   El elemento aparece con fade-in desde abajo.
+   Uso:
+     <div class="fade-in-up">Contenido</div>
+   Nota:
+     Ideal para animar entradas de secciones/cards.
+   ========================================================= */
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   7. PULSE
+   Efecto de latido/pulso (ideal iconos o pequeños elementos).
+   Uso:
+     <span class="pulse">❤️</span>
+   ========================================================= */
+
+.pulse {
+  display: inline-block;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+
+/* =========================================================
+   Extra: utilidades recomendadas (opcionales)
+   Descomenta si quieres tener clases base rápidas.
+   ========================================================= */
+
+/*
+.u-animation-delay-1 { animation-delay: 0.1s; }
+.u-animation-delay-2 { animation-delay: 0.2s; }
+.u-animation-delay-3 { animation-delay: 0.3s; }
+.u-animation-delay-4 { animation-delay: 0.4s; }
+.u-animation-delay-5 { animation-delay: 0.5s; }
+
+.u-animation-slow   { animation-duration: 1.5s !important; }
+.u-animation-fast   { animation-duration: 0.4s !important; }
+*/

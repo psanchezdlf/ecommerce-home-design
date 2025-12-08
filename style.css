@@ -123,6 +123,44 @@ a {
   z-index: 1;
 }
 
+.typewriter{
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.typewriter__text {
+  font-size: 40px;
+  display: inline-block;
+  position: relative; 
+  /* 4s de escritura, 23 pasos (ajustar el número de caracteres) */
+  animation: typing 4s steps(23, end) forwards;
+}
+
+/* Animación de escritura: usar unidades ch para representar caracteres */
+@keyframes typing {
+  from { width: 0; }
+  /* Ajusta número de caracterespara evitar recorte en la mayoría de pantallas */
+  to { width: 23ch; }
+}
+
+/* Cursor pseudo-elemento */
+.typewriter__text::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0.08em;
+  width: 2px;
+  height: 1em;
+  background: rgba(255,255,255,0.9);
+  animation: blink-caret 0.8s steps(1, end) infinite;
+}
+
+@keyframes blink-caret {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
 /* Menú desplegado dentro del hero (oculto en móvil, visible en desktop) */
 .hero-nav {
   display: none; /* por defecto no mostrar en móvil */
@@ -174,11 +212,6 @@ a {
   height: auto;
   z-index: 5; /* por encima del fondo, por debajo del header */
   display: block;
-}
-
-/* Aseguramos que la cajita del header quede por encima del logo */
-.header {
-  z-index: 1002; /* asegurar que la cajita quede siempre por encima de otros elementos */
 }
 
 .hero h1 {
@@ -455,17 +488,6 @@ a {
 
   /* HERO */
 
-  .hero h1 {
-    font-size: 75px; /* fuente de h1 más grande a partir de tablet */
-    margin: 0 0 8px; /* mantiene pequeño espacio abajo en tablet */
-  }
-
-  .hero p {
-    font-size: 24px; /* fuente de p más grande a partir de tablet */
-    margin: 0; /* texto más pegado */
-    padding: 0px 200px 0px 200px; /* amplia aire a los lados*/
-  }
-
   /* devolver padding del hero-text a valores de tablet/desktop */
   .hero {
     background-position: center; /* en pantallas mayores centrar la imagen */
@@ -474,6 +496,15 @@ a {
   .hero-text {
     padding: 40px 40px 60px;
   }
+
+  .typewriter__text {
+    font-size: 50px; /* fuente de h1 más grande a partir de tablet */
+    margin: 0 0 8px; /* mantiene pequeño espacio abajo en tablet */
+  }
+
+  .hero p {
+    font-size: 24px; /* fuente de p más grande a partir de tablet */
+    margin: 0; /* texto más pegado */  }
 
   /* FEATURES */
 
@@ -546,8 +577,8 @@ a {
     font-size: 20px;
   }
 
-  .hero h1 {
-    max-width: 15ch; /* 15 caracteres por línea ≈ 2 líneas */
+  .typewriter__text {
+    font-size: 75px;
     text-align: center;
     margin: 0 auto 8px;
   }
