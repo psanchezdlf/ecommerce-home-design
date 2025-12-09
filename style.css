@@ -130,7 +130,7 @@ a {
 }
 
 .typewriter__text {
-  font-size: 40px;
+  font-size: 25px;
   display: inline-block;
   position: relative; 
   /* 4s de escritura, 23 pasos (ajustar el número de caracteres) */
